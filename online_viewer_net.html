@@ -1,0 +1,28 @@
+<html>
+<body>
+<script>
+function createFallingPipe() {
+    var pipe = document.createElement('div');
+    pipe.innerText = '|';
+    pipe.style.position = 'absolute';
+    pipe.style.left = Math.random() * window.innerWidth + 'px';
+    pipe.style.top = '0px';
+    pipe.style.fontSize = '24px';
+    pipe.style.color = 'blue';
+    document.body.appendChild(pipe);
+
+    var fallInterval = setInterval(function() {
+        var currentTop = parseInt(pipe.style.top);
+        if (currentTop < window.innerHeight) {
+            pipe.style.top = (currentTop + 30) + 'px'; // Adjust falling speed here
+        } else {
+            clearInterval(fallInterval);
+            document.body.removeChild(pipe); // Remove pipe after it falls off screen
+        }
+    }, 10); // Adjust falling speed here
+}
+
+setInterval(createFallingPipe, 0); // Create a new pipe every 500ms
+</script>
+</body>
+</html>
